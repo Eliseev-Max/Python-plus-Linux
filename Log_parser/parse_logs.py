@@ -88,7 +88,7 @@ def parse_logfile(filename):
 
     # # Вывод сериализованного JSON-объекта
     with open("Statistics.json", "a+") as write_file:
-        json.dump(total_report, write_file)
+        json.dump(total_report, write_file, indent=4)
 
     print(json.dumps(total_report, indent=4, ensure_ascii=False))
 
@@ -127,6 +127,7 @@ elif op.isdir(filename):
             assert op.exists(full_name)
         except AssertionError as err:
             print(f'Файла по указанному пути: {full_name} не существует')
+            raise FileNotFoundError
         else:
             parse_logfile(full_name)
 else:
